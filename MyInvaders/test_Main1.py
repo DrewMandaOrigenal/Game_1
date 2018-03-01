@@ -1,19 +1,17 @@
 from tkinter import *
 import table, Invaders_missle, bat
 
+# order a window from the tkinter window factory
+window = Tk()
+window.title("MyPong")
+my_table = table.Table(window)
+
 # initialise global variables
 x_velocity = 10
 y_velocity = 0
 score_left = 0
 score_right = 0
 first_serve = True
-
-# order a window from the tkinter window factory
-window = Tk()
-window.title("MyPong")
-       
-# order a table from the table class
-my_table = table.Table(window, net_colour="green", vertical_net=True)
 
 # order a ball from the ball factory
 my_invaders_missle = Invaders_missle.Invaders_missle(table=my_table, x_speed=x_velocity, y_speed=y_velocity,
