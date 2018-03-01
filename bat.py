@@ -2,19 +2,18 @@ import table
 
 class Bat:
 
-    def _init_(self, table, width=15,height=100, x_posn=50,
-               y_posn=50, colour="green", x_speed=23, y_speed=23):
+    def __init__(self, table, width=15,height=100, x_posn=50, y_posn=50, colour="green", x_speed=23, y_speed=23):
         self.width = width
         self.height = height
         self.posn = x_posn
         self.y_posn = y_posn
         self.colour = colour
         self.x_start = x_posn
-        self.y.start = y_posn
+        self.y_start = y_posn
         self.x_speed = x_speed
         self.y_speed = y_speed
         self.table = table
-        self.rectangle = table.draw_rectangle(self)
+        self.rectangle = self.table.draw_rectangle(self)
 
     def move_up(self, master):
         self.y_posn = self.y_posn - self.y_speed
@@ -61,3 +60,6 @@ class Bat:
     def start_position(self):
         self.x_posn = self.x_start
         self.y_posn = self.y_start
+
+    def detect_collision(self, master):
+        return
