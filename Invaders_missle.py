@@ -18,40 +18,40 @@ class Invaders_missle:
 
 
     def start_position(self):
-        self.x_bat = self.x_start
-        self.y_bat = self.y_start
+        self.x_posn = self.x_start
+        self.y_posn = self.y_start
 
     def start_ball(self, x_speed, y_speed):
         self.x_speed = -x_speed
         self.y_speed = -y_speed
         self.start_position()
 
-    def move_across(self):
- #       self.x_posn = self.x_posn + self.x_speed
+    def move_next(self):
+        self.x_posn = self.x_posn + self.x_speed
         self.y_posn = self.y_posn + self.y_speed
 
-##        if(self.x_posn <= 3):
-##            self.x_posn = 3
-##            self.x_speed = -self.x_speed
+        if(self.x_posn <= 3):
+            self.x_posn = 3
+            self.x_speed = -self.x_speed
 
-#        if  (self.x_posn >= (self.table.width - (self.width - 2))):
-#             self.x_posn = (self.table.width - (self.width-2))
-#             self.x_speed = -self.x_speed
+        if(self.x_posn >= (self.table.width - (self.width - 3))):
+            self.x_posn = (self.table.width - (self.width-3))
+            self.x_speed = -self.x_speed
 
-        if (self.y_posn <= 3):
+        if(self.y_posn <= 3):
             self.y_posn = 3
             self.y_speed = -self.y_speed
 
-        if (self.y_posn >= (self.table.height - (self.height -3))):
+        if(self.y_posn >= (self.table.height - (self.height -3))):
             self.y_posn = (self.table.height - (self.height - 3))
             self.y_speed = -self.y_speed
 
-##        x1 = self.x_posn
-##        x2 = self.x_posn+self.width
+        x1 = self.x_posn
+        x2 = self.x_posn+self.width
         y1 = self.y_posn
         y2 = self.y_posn+self.height
-        self.table.move_(self.circle, y1, y2)
+        self.table.move_item(self.circle, x1, y1, x2, y2)
 
     def stop_ball(self):
-#            self.x_speed = 0
-            self.y_speed = 0
+        self.x_speed = 0
+        self.y_speed = 0

@@ -1,6 +1,11 @@
 from tkinter import *
 import table, Invaders_missle, bat
 
+# order a window from the tkinter window factory
+window = Tk()
+window.title("MyPong")
+my_table = table.Table(window)
+
 # initialise global variables
 x_velocity = 10
 y_velocity = 0
@@ -8,29 +13,13 @@ score_left = 0
 score_right = 0
 first_serve = True
 
-# order a window from the tkinter window factory
-window = Tk()
-window.title("MyPong")
-       
-# order a table from the table class
-my_table = table.Table(window, net_colour="green", vertical_net=True)
+my_invaders_missle = Invaders_missle.Invaders_missle(table=my_table, x_speed=x_velocity, y_speed=y_velocity, width=24, height=24, colour="red", x_start=288, y_start=188)
 
-# order a ball from the ball factory
-my_invaders_missle = Invaders_missle.Invaders_missle(table=my_table, x_speed=x_velocity, y_speed=y_velocity,
-                                                     width=24, height=24, colour="red", x_start=288, y_start=188)
-#my_invaders_missle = Invaders_missle.Invaders_missle()
-
-# order a left and right bat from the bat class
-bat_L = bat.Bat(table=my_table, width=15, height=100, x_posn=20, y_posn=150, colour="blue")
-bat_R = bat.Bat(table=my_table, width=15, height=100, x_posn=575, y_posn=150, colour="yellow")
-#bat_L = bat.Bat()
-#bat_R = bat.Bat()
+bat_B = bat.Bat(table=my_table, height=15, width=8, x_posn=250, y_posn=350, colour="black")
 
 #### functions:
 def game_flow():
     global first_serve
-    global score_left
-    global score_right
     
     # wait for first serve:
     if(first_serve == True):
@@ -38,8 +27,8 @@ def game_flow():
         first_serve = False
     
     # detect if ball has hit the bats:
-    bat_L.detect_collision(my_invaders_missle)
-    bat_R.detect_collision(my_invaders_missle)
+##    bat_L.detect_collision(my_invaders_missle)
+##   bat_R.detect_collision(my_invaders_missle)
 
     # detect if the ball has hit the left wall:
 ##    if(my_invaders_missle.x_posn <= 3):
@@ -71,7 +60,7 @@ def game_flow():
 ##        first_serve=True
 ##        my_table.draw_score(score_left, score_right)
      
- #   my_invaders_missle.move_next()
+    my_invaders_missle.move_next()
     window.after(50, game_flow)
 
 # add restart_game function here:
@@ -85,16 +74,11 @@ def restart_game(master):
     my_table.draw_score(score_left, score_right)
 
 # bind the controls of the bats to keys on the keyboard
-window.bind("a", bat_L.move_up)
-window.bind("z", bat_L.move_down)
-window.bind("<Up>", bat_R.move_up)
-window.bind("<Down>", bat_R.move_down)
+window.bind("<Left>", bat_B.move_left)
+window.bind("<Right>", bat_B.move_right)
 
 # bind restart to the spacebar
-#window.bind("<space>", restart_game)
+window.bind("<space>", restart_game)
 
-# call the game_flow loop
 game_flow()
-
-# start the tkinter loop process
 window.mainloop()
