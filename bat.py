@@ -13,7 +13,7 @@ class Bat:
         self.x_speed = x_speed
         self.y_speed = y_speed
         self.table = table
-        self.rectangle = self.table.draw_rectangle(self)
+        self.rectangle = table.draw_rectangle(self)
 
     def move_up(self, master):
         self.y_posn = self.y_posn - self.y_speed

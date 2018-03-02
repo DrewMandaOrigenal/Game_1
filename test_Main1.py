@@ -1,11 +1,6 @@
 from tkinter import *
 import table, Invaders_missle, bat
 
-# order a window from the tkinter window factory
-window = Tk()
-window.title("MyPong")
-my_table = table.Table(window)
-
 # initialise global variables
 x_velocity = 10
 y_velocity = 0
@@ -13,11 +8,23 @@ score_left = 0
 score_right = 0
 first_serve = True
 
+# order a window from the tkinter window factory
+window = Tk()
+window.title("MyPong")
+       
+# order a table from the table class
+my_table = table.Table(window, net_colour="green", vertical_net=True)
+
 # order a ball from the ball factory
-my_invaders_missle = Invaders_missle.Invaders_missle(table=my_table, x_speed=x_velocity, y_speed=y_velocity, width=24, height=24, colour="red", x_start=288, y_start=188)
+my_invaders_missle = Invaders_missle.Invaders_missle(table=my_table, x_speed=x_velocity, y_speed=y_velocity,
+                                                     width=24, height=24, colour="red", x_start=288, y_start=188)
+#my_invaders_missle = Invaders_missle.Invaders_missle()
 
 # order a left and right bat from the bat class
-bat_B = bat.Bat(table=my_table, x_speed=x_velocity, y_speed=y_velocity, height=15, width=8, colour="black")
+bat_L = bat.Bat(table=my_table, width=15, height=100, x_posn=20, y_posn=150, colour="blue")
+bat_R = bat.Bat(table=my_table, width=15, height=100, x_posn=575, y_posn=150, colour="yellow")
+#bat_L = bat.Bat()
+#bat_R = bat.Bat()
 
 #### functions:
 def game_flow():
@@ -64,7 +71,7 @@ def game_flow():
 ##        first_serve=True
 ##        my_table.draw_score(score_left, score_right)
      
-    my_invaders_missle.move_next()
+ #   my_invaders_missle.move_next()
     window.after(50, game_flow)
 
 # add restart_game function here:
@@ -84,7 +91,7 @@ window.bind("<Up>", bat_R.move_up)
 window.bind("<Down>", bat_R.move_down)
 
 # bind restart to the spacebar
-window.bind("<space>", restart_game)
+#window.bind("<space>", restart_game)
 
 # call the game_flow loop
 game_flow()
